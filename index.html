@@ -48,7 +48,7 @@
 <body>
   <div class="container">
     <h2>Control ESP32 Door Lock</h2>
-    <form id="unlock-form">
+    <form id="unlock-form" action="javascript:void(0);">
       <label for="password">Enter Password:</label>
       <input type="password" id="password" name="password" required>
       <button type="submit">Unlock Door</button>
@@ -57,13 +57,10 @@
   </div>
 
   <script>
-    document.getElementById('unlock-form').addEventListener('submit', function (event) {
-      event.preventDefault();  // Prevent the default form submission
-
+    document.getElementById('unlock-form').addEventListener('submit', function () {
       const password = document.getElementById('password').value;
 
-      // Fetch request to the /get-password endpoint on the server
-      fetch('https://door-lock-ochre.vercel.app/get-password', {  // Use your deployed URL
+      fetch('/get-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -72,7 +69,6 @@
       })
       .then(response => response.text())
       .then(data => {
-        // Display response based on the server's reply
         document.getElementById('response').innerText = data === "Correct password" 
           ? "Door Unlocked!" 
           : "Incorrect Password.";
