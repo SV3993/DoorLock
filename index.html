@@ -60,7 +60,7 @@
     document.getElementById('unlock-form').addEventListener('submit', function () {
       const password = document.getElementById('password').value;
 
-      fetch('https://10.10.0.2/get-password', {
+      fetch('http://10.10.0.2/get-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -72,6 +72,7 @@
         document.getElementById('response').innerText = data === "Correct password" 
           ? "Door Unlocked!" 
           : "Incorrect Password.";
+        document.getElementById('password').value = ''; // Clear the password field
       })
       .catch(error => {
         console.error('Error:', error);
