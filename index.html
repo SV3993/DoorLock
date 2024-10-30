@@ -1,84 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ESP32 Door Lock Control</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .container {
-      text-align: center;
-      padding: 20px;
-      border-radius: 10px;
-      background-color: #fff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    input[type="password"] {
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      width: 80%;
-    }
-    button {
-      padding: 10px 20px;
-      color: white;
-      background-color: #007067;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #054861;
-    }
-    #response {
-      margin-top: 15px;
-      font-weight: bold;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World Example</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Control ESP32 Door Lock</h2>
-    <form id="unlock-form" action="/get-password" method="POST">
-      <label for="password">Enter Password:</label>
-      <input type="password" id="password" name="password" required>
-      <button type="submit">Unlock Door</button>
-    </form>
-    <div id="response"></div>
-  </div>
-
-  <script>
-    document.getElementById('unlock-form').addEventListener('submit', function (event) {
-      event.preventDefault();
-      const password = document.getElementById('password').value;
-
-      fetch('/get-password', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `password=${encodeURIComponent(password)}`,
-      })
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('response').innerText = data === "Correct password" 
-          ? "Door Unlocked!" 
-          : "Incorrect Password.";
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        document.getElementById('response').innerText = 'Error communicating with the server';
-      });
-    });
-  </script>
+    <h1>Hello World!</h1>
 </body>
 </html>
