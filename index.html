@@ -60,25 +60,24 @@
     document.getElementById('unlock-form').addEventListener('submit', function () {
       const password = document.getElementById('password').value;
 
-      fetch('https://10.10.0.2/get-password', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `password=${encodeURIComponent(password)}`,
-      })
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('response').innerText = data === "Correct password" 
-          ? "Door Unlocked!" 
-          : "Incorrect Password.";
-        document.getElementById('password').value = ''; // Clear the password field
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        document.getElementById('response').innerText = 'Error communicating with the server';
-      });
-    });
+      fetch('http://10.10.0.2/get-password', { // Note: Changed to HTTP
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  },
+  body: `password=${encodeURIComponent(password)}`,
+})
+.then(response => response.text())
+.then(data => {
+  document.getElementById('response').innerText = data === "Correct password" 
+    ? "Door Unlocked!" 
+    : "Incorrect Password.";
+})
+.catch(error => {
+  console.error('Error:', error);
+  document.getElementById('response').innerText = 'Error communicating with the server';
+});
+
   </script>
 </body>
 </html>
