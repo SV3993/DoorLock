@@ -60,7 +60,7 @@
     document.getElementById('unlock-form').addEventListener('submit', function () {
       const password = document.getElementById('password').value;
 
-      fetch('http://10.10.0.2/unlock', { // Replace with ESP32 IP
+      fetch('https://172.32.12.9/unlock', { // Replace with ESP32 IP
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
